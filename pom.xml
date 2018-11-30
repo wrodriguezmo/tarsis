@@ -31,7 +31,12 @@
 		<artifactId>javax.servlet-api</artifactId>
 		<version>3.1.0</version>
 		<scope>provided</scope>
-	</dependency>	
+	</dependency>
+		<dependency>
+			<groupId>org.imsglobal</groupId>
+			<artifactId>basiclti-util</artifactId>
+			<version>1.1.2</version>
+		</dependency>
   </dependencies>
 
   <build>
