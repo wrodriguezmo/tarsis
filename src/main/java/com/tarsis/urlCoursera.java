@@ -24,8 +24,6 @@ public class urlCoursera extends HttpServlet {
 	private static final long serialVersionUID = 4853895113249053138L;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		
-		
 		LtiVerifier ltiVerifier = new LtiOauthVerifier();
 		String key = request.getParameter("oauth_consumer_key");
 		//Verifica que sea un request
@@ -33,7 +31,7 @@ public class urlCoursera extends HttpServlet {
 			LtiVerificationResult ltiResult = ltiVerifier.verify(request, "secret");
 			if(ltiResult.getSuccess()) {
 				try {
-					IMSPOXRequest.sendReplaceResult(request.getParameter("lis_outcome_service_url"), key, "secret", "Algo", "0.5");
+					IMSPOXRequest.sendReplaceResult(request.getParameter("lis_outcome_service_url"), key, "secret", request.getParameter("lis_result_sourcedid"), "0.2");
 					response.getWriter().println("Hello World.!");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -56,6 +54,11 @@ public class urlCoursera extends HttpServlet {
 //		String secret = // retrieve corresponding secret for key from db
 //		LtiVerificationResult ltiResult = ltiVerifier.verify(request, secret);
 //		LtiClass.manageRequest(request);
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		response.getWriter().println("Bye World.!");
 	}
 	@Override
 	public void init() throws ServletException {
